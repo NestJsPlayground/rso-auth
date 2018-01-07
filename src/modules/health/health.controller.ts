@@ -1,7 +1,6 @@
 import { Controller, ForbiddenException, Get, HttpStatus, Res, UseGuards } from '@nestjs/common';
 import { ApiResponse, ApiUseTags } from '@nestjs/swagger';
 import { ConsulService } from '../consul/consul.service';
-import { AuthGuard } from '../auth/auth.guard';
 import { environment } from '../../environment';
 import * as mongoose from "mongoose";
 
@@ -15,6 +14,8 @@ export class HealthController {
   @ApiResponse({ status: 200, description: `Service health is ok.`})
   root() {
     return {
+      appId: environment.appId,
+      appName: environment.appName,
       serviceRegistered: ConsulService.serviceRegistered,
       maintenance: this.consulService.maintenance,
       api: 'OK',

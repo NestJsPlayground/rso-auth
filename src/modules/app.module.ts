@@ -5,7 +5,6 @@ import { MiddlewaresConsumer } from '@nestjs/common/interfaces/middlewares';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { LoggerModule } from './logger/logger.module';
 import { ConsulModule } from './consul/consul.module';
-import { AuthMiddleware } from './auth/auth.middleware';
 import { UserModule } from './user/user.module';
 import { MaintenanceMiddleware } from './maintenance/maintenance.middleware';
 

@@ -37,7 +37,7 @@ export class UserController {
     x.save();
   }
 
-  @Post('/login')
+  @Post('login')
   @ApiResponse({ status: 200, description: `Returns token`})
   async login(@Body() loginData: LoginData) {
     const user = await this.entryModel.findOne({ username: loginData.username }).lean();
@@ -51,10 +51,9 @@ export class UserController {
     return { ...user, password: void 0, token };
   }
 
-  @Get('/token-valid/:token')
+  @Get('token-valid/:token')
   @ApiResponse({ status: 200, description: `Validates token and return user object`})
-  async validate(@Param() params): Promise<any> {
-    const rawToken = params.token;
+  async validate(@Param('token') rawToken: string): Promise<any> {
     if (!rawToken) {
       throw new UnauthorizedException();
     }
