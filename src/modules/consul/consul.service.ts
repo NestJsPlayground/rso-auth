@@ -129,20 +129,6 @@ export class ConsulService {
   }
 
   initWatch() {
-    this.watchService('rso-seed');
-
-    // TEST
-    // setTimeout(() => {
-    //   console.info(this.getRandomService('rso-seed'));
-    //   console.info(this.getRandomService('rso-seed'));
-    //   console.info(this.getRandomService('rso-seed'));
-    //   console.info(this.getRandomService('rso-seed'));
-    //   console.info(this.getRandomService('rso-seed'));
-    //   console.info(this.getRandomService('rso-seed'));
-    //   console.info(this.getRandomService('rso-seed'));
-    //   console.info(this.getRandomService('rso-seed'));
-    // }, 5000)
-
     try {
       this.watch('core/maintenance', false);
     } catch (e) {
