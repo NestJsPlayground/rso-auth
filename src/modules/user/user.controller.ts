@@ -5,6 +5,7 @@ import * as rp from 'request-promise-native';
 import * as bcrypt from 'bcrypt';
 import * as jwtSimple from 'jwt-simple';
 import { environment } from '../../environment';
+import * as moment from 'moment';
 
 export function hashPassword(password: string) {
   return bcrypt.hash(password, 10);
@@ -43,8 +44,11 @@ export class UserController {
     if (!user || !(await comparePassword(loginData.password, (user as any).password))) {
       throw new UnauthorizedException();
     }
-
-    return { ...user, password: void 0 };
+    const token = jwtSimple.encode({
+      id: (user as any)._id,
+      exp: moment().add(30, 'days').unix(),
+    }, environment.jwtSecret);
+    return { ...user, password: void 0, token };
   }
 
   @Get('/token-valid/:token')
@@ -60,7 +64,7 @@ export class UserController {
     } catch (e) {
       throw new UnauthorizedException();
     }
-    if (token.exp <= Date.now()) {
+    if (token.exp <= moment().unix()) {
       throw new UnauthorizedException();
     }
     const user = await this.entryModel.findById(token.id).lean();
