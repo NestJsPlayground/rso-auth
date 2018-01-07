@@ -8,6 +8,8 @@ export const environment = {
   envType,
   appId: `${ appName }-${ uuidv1() }`,
 
+  jwtSecret: 'abc123',
+
   port: + (process.env.PORT || 3000),
 
   deployVersion: process.env.DEPLOY_VERSION || 'unknown',

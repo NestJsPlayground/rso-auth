@@ -6,6 +6,7 @@ import { LoggerMiddleware } from './logger/logger.middleware';
 import { LoggerModule } from './logger/logger.module';
 import { ConsulModule } from './consul/consul.module';
 import { AuthMiddleware } from './auth/auth.middleware';
+import { UserModule } from './user/user.module';
 
 @Module({
   controllers: [
@@ -15,7 +16,8 @@ import { AuthMiddleware } from './auth/auth.middleware';
   modules: [
     HealthModule,
     LoggerModule,
-    ConsulModule
+    ConsulModule,
+    UserModule
   ],
 })
 export class ApplicationModule implements NestModule {

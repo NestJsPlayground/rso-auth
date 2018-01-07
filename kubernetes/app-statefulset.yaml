@@ -1,17 +1,17 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: apiseed
+  name: api-auth
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: apiseed
+        app: api-auth
         tier: frontend
     spec:
       containers:
-      - image: tilen/rso-seed
+      - image: tilen/rso-auth
         name: apiseed
         ports:
         - containerPort: 3000
